@@ -1,0 +1,28 @@
+<div class="row">
+	<div class="col-md-5">
+		<form>
+			<h4>Employee-Form</h4>
+			
+			<label for="fname">First Name:</label>
+			<input type="text" id="fname" class="form-control" #fname> 
+				
+			<label for="lname">Last Name:</label>
+			<input type="text" id="lname" class="form-control" #lname> 
+				
+			<label for="cno">Contact Number:</label>
+			<input type="text" id="cno" class="form-control" #cno> 
+				
+			<label for="salary">Salary:</label>
+			<input type="text" id="salary" class="form-control" #salary> 
+
+			<label for="role">Role Type :</label>
+			<select id="role" class="form-control" #roletype>
+			    <option>Project-Manager</option>
+			    <option>Developer</option>
+			    <option>Designer</option>
+			</select>
+			<br>	
+			<button class="btn btn-success" type="submit" (click)="onSubmitEvent(fname,lname,cno,salary,roletype)">Submit</button>
+		</form>
+	</div>
+</div>
