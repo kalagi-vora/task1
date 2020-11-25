@@ -1,28 +1,50 @@
 <div class="row">
 	<div class="col-md-5">
-		<form>
+		<form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 			<h4>Employee-Form</h4>
 			
-			<label for="fname">First Name:</label>
-			<input type="text" id="fname" class="form-control" #fname> 
+			<div class="form-group">
+			<label for="firstName">First Name:</label>
+			<input type="text" id="firstName" class="form-control" formControlName="firstName" oninput="return firstName.value!==''" #firstName required>
+			<div *ngIf="data.firstName.errors?.required && (firstName.dirty || firstName.touched)">
+				First Name is required.
+			</div> 
+			</div>
 				
-			<label for="lname">Last Name:</label>
-			<input type="text" id="lname" class="form-control" #lname> 
-				
-			<label for="cno">Contact Number:</label>
-			<input type="text" id="cno" class="form-control" #cno> 
-				
-			<label for="salary">Salary:</label>
-			<input type="text" id="salary" class="form-control" #salary> 
+			<div class="form-group">
+			<label for="lastName">Last Name:</label>
+			<input type="text" id="lastName" class="form-control" formControlName="lastName"  #lastName required>
+			<div *ngIf="data.lastName.errors?.required && lastName.touched">
+				Last Name is required.
+			</div>
+			</div>
 
+			<div class="form-group">	
+			<label for="contactNo">Contact Number:</label>
+			<input type="text" id="contactNo" class="form-control" formControlName="contactNo" #contactNo required> 
+			<div *ngIf="data.contactNo.errors?.required && contactNo.touched">
+				Contact Number is required.
+			</div>
+			</div>
+			
+			<div class="form-group">	
+			<label for="salary">Salary:</label>
+			<input type="number" id="salary" class="form-control" formControlName="salary" #salary required> 
+			<div *ngIf="data.salary.errors?.required && salary.touched">
+				Salary is required.
+			</div>
+			</div>
+
+			<div class="form-group">	
 			<label for="role">Role Type :</label>
-			<select id="role" class="form-control" #roletype>
+			<select id="role" class="form-control" formControlName="role" #role required>
 			    <option>Project-Manager</option>
 			    <option>Developer</option>
-			    <option>Designer</option>
+				<option>Designer</option>
 			</select>
+			</div>
 			<br>	
-			<button class="btn btn-success" type="submit" (click)="onSubmitEvent(fname,lname,cno,salary,roletype)">Submit</button>
+			<button class="btn btn-success" [disabled]="registerForm.invalid" type="submit">Submit</button>
 		</form>
 	</div>
 </div>

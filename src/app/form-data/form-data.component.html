@@ -1,0 +1,23 @@
+<div class="row">
+    <div class="col-md-12">
+        <app-form (formData)="onAdding($event)"></app-form>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-12">
+        <app-projectmanager [dataArray]="projectManagerFormData"></app-projectmanager>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-12">
+        <app-developer [dataArray]="developerFormData"></app-developer>
+      </div>
+    </div>
+    <hr>
+    <div class="row">
+      <div class="col-md-12">
+        <app-designer [dataArray]="designerFormData"></app-designer>
+      </div>
+</div>

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ProjectmanagerComponent } from './projectmanager/projectmanager.component';
 import {empFormData} from './shared/empform.model';
 
 @Component({
@@ -8,20 +9,4 @@ import {empFormData} from './shared/empform.model';
 })
 export class AppComponent {
   title = 'task1';
-  devempformdata : empFormData[] =[];
-  designerempformdata : empFormData[] =[];
-  pmempformdata : empFormData[] =[];
-
-  onAdding(formData: empFormData)
-  {
-  	if(formData.role==='Developer'){
-  		this.devempformdata.push(formData);
-  	}
-  	else if(formData.role==='Project-Manager'){
-  		this.pmempformdata.push(formData);
-  	}
-  	else{
-  		this.designerempformdata.push(formData);
-  	}
-  }
 }

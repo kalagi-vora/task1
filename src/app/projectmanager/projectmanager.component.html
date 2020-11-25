@@ -9,7 +9,7 @@
 			    <th>Designation</th>
 			    <th>Salary</th>
 			</tr>
-			<tr *ngFor ="let data of dataarray" [ngStyle]="{'color':getColor(data.salary)}">
+			<tr *ngFor ="let data of dataArray" [ngStyle]="{'color':getColorOfRow(data.salary)}">
 				<td>{{data.fname}}</td>
 				<td>{{data.lname}}</td>
 				<td>{{data.cno}}</td>

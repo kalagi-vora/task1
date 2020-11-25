@@ -1,4 +1,5 @@
 import { Component, OnInit,Output ,EventEmitter,ViewChild,ElementRef} from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import {empFormData} from '../shared/empform.model';
 
 @Component({
@@ -7,22 +8,28 @@ import {empFormData} from '../shared/empform.model';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements OnInit {
-  // @ViewChild('lname',{static:false}) lnameRef: ElementRef;
-  // @ViewChild('fname',{static:false}) fnameRef: ElementRef;
-  // @ViewChild('cno',{static:false}) cno: ElementRef;
-  // @ViewChild('salary',{static:false}) salary: ElementRef;
-  // @ViewChild('role',{static:false}) role: ElementRef;
+  
   @Output() formData = new EventEmitter<empFormData>();
   
-  constructor() { }
+  registerForm: FormGroup;
 
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder) { }
+
+  ngOnInit() {
+    this.registerForm = this.formBuilder.group({
+      firstName: ['', [Validators.required,Validators.minLength(3),Validators.maxLength(20), Validators.pattern(/^\S*$/)]],
+      lastName: ['', [Validators.required, Validators.minLength(3),Validators.maxLength(20), Validators.pattern(/^\S*$/)]],
+      contactNo: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
+      salary: ['',[ Validators.required, Validators.pattern(/^\d*$/)]],
+      role : ['',Validators.required]
+    })
   }
 
-  onSubmitEvent(fnameref,lnameref,cnoref,salaryref,roleref)
-  {
-  	const newEmpData = new empFormData(fnameref.value,lnameref.value,cnoref.value,salaryref.value,roleref.value);
-  	this.formData.emit(newEmpData);
-  }
+  get data() { return this.registerForm.controls; }
 
+  onSubmit() {
+    const value = this.registerForm.value;
+    const newEmpData = new empFormData(value.firstName , value.lastName,value.contactNo, value.salary, value.role);
+    this.formData.emit(newEmpData);
+  }
 }
